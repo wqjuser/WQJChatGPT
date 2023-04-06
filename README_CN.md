@@ -11,7 +11,7 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wqjuser/WQJChatGPT)
 
-![主界面](./static/cover.png)
+![cover](./docs/images/cover.png)
 
 </div>
 
