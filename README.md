@@ -7,11 +7,11 @@ One-Click to deploy your own ChatGPT web UI.
 
 一键免费部署你的私人 ChatGPT 网页应用。
 
-[演示 Demo](https://chat-gpt-next-web.vercel.app/) / [反馈 Issues](https://github.com/Yidadaa/ChatGPT-Next-Web/issues) / [Join Discord](https://discord.gg/zrhvHCr79N) / [QQ 群](https://user-images.githubusercontent.com/16968934/228190818-7dd00845-e9b9-4363-97e5-44c507ac76da.jpeg) / [打赏开发者](https://user-images.githubusercontent.com/16968934/227772541-5bcd52d8-61b7-488c-a203-0330d8006e2b.jpg)
+[演示 Demo](https://youraihelper.xyz/) / [反馈 Issues](https://github.com/wqjuser/WQJChatGPT/issues)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYidadaa%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=ChatGPT-Next-Web)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwqjuser%2FWQJChatGPT&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt&repository-name=ChatGPT)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Yidadaa/ChatGPT-Next-Web)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wqjuser/WQJChatGPT)
 
 ![cover](./docs/images/cover.png)
 
@@ -27,47 +27,13 @@ One-Click to deploy your own ChatGPT web UI.
 - One-click export all chat history with full Markdown support
 - I18n supported
 
-## Roadmap
-
-- [x] System Prompt: pin a user defined prompt as system prompt [#138](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/138)
-- [ ] User Prompt: user can edit and save custom prompts to prompt list
-- [ ] Desktop App with tauri
-- [ ] Self-host Model: support llama, alpaca, ChatGLM, BELLE etc.
-- [ ] Plugins: support network search, caculator, any other apis etc. [#165](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/165)
-
-### Not in Plan
-
-- User login, accounts, cloud sync
-- UI text customize
-
-## 主要功能
-
-- 在 1 分钟内使用 Vercel **免费一键部署**
-- 精心设计的 UI，响应式设计，支持深色模式，支持 PWA
-- 极快的首屏加载速度（~100kb）
-- 海量的内置 prompt 列表，来自[中文](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)和[英文](https://github.com/f/awesome-chatgpt-prompts)
-- 自动压缩上下文聊天记录，在节省 Token 的同时支持超长对话
-- 一键导出聊天记录，完整的 Markdown 支持
-- 拥有自己的域名？好上加好，绑定后即可在任何地方**无障碍**快速访问
-
-## 开发计划 
-- [x] 为每个对话设置系统 Prompt [#138](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/138)
-- [ ] 允许用户自行编辑内置 Prompt 列表
-- [ ] 使用 tauri 打包桌面应用
-- [ ] 支持自部署的大语言模型
-- [ ] 插件机制，支持联网搜索、计算器、调用其他平台 api [#165](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/165)
-
-### 不会开发的功能
-- 界面文字自定义
-- 用户登录、账号管理、消息云同步
-
 
 ## Get Started
 > [简体中文 > 如何开始使用](./README_CN.md#开始使用)
 
 1. Get [OpenAI API Key](https://platform.openai.com/account/api-keys);
 2. Click
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYidadaa%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=ChatGPT-Next-Web), remember that `CODE` is your page password;
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwqjuser%2FWQJChatGPT&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt&repository-name=ChatGPT), remember that `CODE` is your page password;
 3. Enjoy :)
 
 ## FAQ
@@ -132,7 +98,7 @@ Override openai api request protocol.
 ## Development
 > [简体中文 > 如何进行二次开发](./README_CN.md#开发)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Yidadaa/ChatGPT-Next-Web)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wqjuser/WQJChatGPT)
 
 Before starting development, you must create a new `.env.local` file at project root, and place your api key into it:
 
@@ -155,15 +121,15 @@ yarn dev
 ### Docker (Recommended)
 
 ```shell
-docker pull yidadaa/chatgpt-next-web
+docker pull wqjuser/WQJChatGPT
 
-docker run -d -p 3000:3000 -e OPENAI_API_KEY="" -e CODE="" yidadaa/chatgpt-next-web
+docker run -d -p 3000:3000 -e OPENAI_API_KEY="" -e CODE="" wqjuser/WQJChatGPT
 ```
 
 ### Shell
 
 ```shell
-bash <(curl -s https://raw.githubusercontent.com/Yidadaa/ChatGPT-Next-Web/main/scripts/setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/wqjuser/WQJChatGPT/main/scripts/setup.sh)
 ```
 ## Screenshots
 
@@ -171,18 +137,6 @@ bash <(curl -s https://raw.githubusercontent.com/Yidadaa/ChatGPT-Next-Web/main/s
 
 ![More](./docs/images/more.png)
 
-
-## Special Thanks
-### Sponsor
-
-[@mushan0x0](https://github.com/mushan0x0)
-[@ClarenceDan](https://github.com/ClarenceDan)
-[@zhangjia](https://github.com/zhangjia)
-[@hoochanlon](https://github.com/hoochanlon)
-
-### Contributor
-
-[Contributors](https://github.com/Yidadaa/ChatGPT-Next-Web/graphs/contributors)
 
 ## LICENSE
 
