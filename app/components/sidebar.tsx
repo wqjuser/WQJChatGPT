@@ -92,6 +92,11 @@ export function SideBar(props: { className?: string }) {
       <div className={styles["sidebar-header"]}>
         <div className={styles["sidebar-title"]}>你的AI助手</div>
         <div className={styles["sidebar-sub-title"]}>享受你自己的AI助手</div>
+        <div className={styles["sidebar-sub-title"]}>
+          <a href={"https://monica.im/?c=SQXHFYBP"} target="_blank">
+            想要浏览器插件？试试这个！
+          </a>
+        </div>
         <div className={styles["sidebar-logo"]}>
           <ChatGptIcon />
         </div>
