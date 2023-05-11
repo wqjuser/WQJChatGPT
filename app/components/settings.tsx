@@ -12,7 +12,15 @@ import ClearIcon from "../icons/clear.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 import EditIcon from "../icons/edit.svg";
 import EyeIcon from "../icons/eye.svg";
-import { Input, List, ListItem, Modal, PasswordInput, Popover } from "./ui-lib";
+import {
+  Input,
+  List,
+  ListItem,
+  Modal,
+  PasswordInput,
+  Popover,
+  Select,
+} from "./ui-lib";
 import { ModelConfigList } from "./model-config";
 
 import { IconButton } from "./button";
@@ -370,7 +378,7 @@ export function Settings() {
           </ListItem>
 
           <ListItem title={Locale.Settings.SendKey}>
-            <select
+            <Select
               value={config.submitKey}
               onChange={(e) => {
                 updateConfig(
@@ -384,11 +392,11 @@ export function Settings() {
                   {v}
                 </option>
               ))}
-            </select>
+            </Select>
           </ListItem>
 
           <ListItem title={Locale.Settings.Theme}>
-            <select
+            <Select
               value={config.theme}
               onChange={(e) => {
                 updateConfig(
@@ -401,11 +409,11 @@ export function Settings() {
                   {v}
                 </option>
               ))}
-            </select>
+            </Select>
           </ListItem>
 
           <ListItem title={Locale.Settings.Lang.Name}>
-            <select
+            <Select
               value={getLang()}
               onChange={(e) => {
                 changeLang(e.target.value as any);
@@ -416,7 +424,7 @@ export function Settings() {
                   {Locale.Settings.Lang.Options[lang]}
                 </option>
               ))}
-            </select>
+            </Select>
           </ListItem>
 
           <ListItem
