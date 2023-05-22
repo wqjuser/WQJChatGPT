@@ -130,6 +130,8 @@ export function SideBar(props: { className?: string }) {
           <a href={"https://discord.gg/fSERcYQmkw"} target="_blank">
             Discord
           </a>
+        </div>
+        <div className={styles["sidebar-sub-title"]}>
           感兴趣请查看
           <a
             href={
