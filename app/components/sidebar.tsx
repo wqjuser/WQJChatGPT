@@ -122,8 +122,12 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-title"]}>你的AI助手</div>
         <div className={styles["sidebar-sub-title"]}>享受你自己的AI助手</div>
         <div className={styles["sidebar-sub-title"]}>
-          <a href={"https://monica.im/?c=SQXHFYBP"} target="_blank">
-            想要浏览器插件？试试这个！
+          欢迎加入我的AI社群
+          <a href={"https://t.me/+HiaolOfrZ2Y3OTI1"} target="_blank">
+            TG
+          </a>
+          <a href={"https://discord.gg/fSERcYQmkw"} target="_blank">
+            Discord
           </a>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
