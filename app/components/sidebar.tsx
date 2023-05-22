@@ -130,6 +130,15 @@ export function SideBar(props: { className?: string }) {
           <a href={"https://discord.gg/fSERcYQmkw"} target="_blank">
             Discord
           </a>
+          感兴趣请查看
+          <a
+            href={
+              "https://ixtrs1l7r3f.feishu.cn/docx/PWDRd76EBoaF2txi80zcZADznFc"
+            }
+            target="_blank"
+          >
+            AI社群说明文档
+          </a>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
