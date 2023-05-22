@@ -126,6 +126,7 @@ export function SideBar(props: { className?: string }) {
           <a href={"https://t.me/+HiaolOfrZ2Y3OTI1"} target="_blank">
             TG
           </a>
+          或者
           <a href={"https://discord.gg/fSERcYQmkw"} target="_blank">
             Discord
           </a>
