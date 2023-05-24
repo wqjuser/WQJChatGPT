@@ -486,23 +486,23 @@ export function Settings() {
         </List>
 
         <List>
-          {/*{enabledAccessControl ? (*/}
-          {/*  <ListItem*/}
-          {/*    title={Locale.Settings.AccessCode.Title}*/}
-          {/*    subTitle={Locale.Settings.AccessCode.SubTitle}*/}
-          {/*  >*/}
-          {/*    <PasswordInput*/}
-          {/*      value={accessStore.accessCode}*/}
-          {/*      type="text"*/}
-          {/*      placeholder={Locale.Settings.AccessCode.Placeholder}*/}
-          {/*      onChange={(e) => {*/}
-          {/*        accessStore.updateCode(e.currentTarget.value);*/}
-          {/*      }}*/}
-          {/*    />*/}
-          {/*  </ListItem>*/}
-          {/*) : (*/}
-          {/*  <></>*/}
-          {/*)}*/}
+          {enabledAccessControl ? (
+            <ListItem
+              title={Locale.Settings.AccessCode.Title}
+              subTitle={Locale.Settings.AccessCode.SubTitle}
+            >
+              <PasswordInput
+                value={accessStore.accessCode}
+                type="text"
+                placeholder={Locale.Settings.AccessCode.Placeholder}
+                onChange={(e) => {
+                  accessStore.updateCode(e.currentTarget.value);
+                }}
+              />
+            </ListItem>
+          ) : (
+            <></>
+          )}
 
           {!accessStore.hideUserApiKey ? (
             <ListItem
