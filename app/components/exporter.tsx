@@ -1,23 +1,25 @@
 import { ChatMessage, useAppConfig, useChatStore } from "../store";
 import Locale from "../locales";
 import styles from "./exporter.module.scss";
-import { List, ListItem, Modal, showToast } from "./ui-lib";
+import { List, ListItem, Modal, Select, showToast } from "./ui-lib";
 import { IconButton } from "./button";
 import { copyToClipboard, downloadAs, useMobileScreen } from "../utils";
 
 import CopyIcon from "../icons/copy.svg";
 import LoadingIcon from "../icons/three-dots.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
+import ChatGptIcon from "../icons/chatgpt.png";
 import ShareIcon from "../icons/share.svg";
+import BotIcon from "../icons/bot.png";
 
 import DownloadIcon from "../icons/download.svg";
 import { useMemo, useRef, useState } from "react";
 import { MessageSelector, useMessageSelector } from "./message-selector";
 import { Avatar } from "./emoji";
-import { MaskAvatar } from "./mask";
 import dynamic from "next/dynamic";
+import NextImage from "next/image";
 
 import { toBlob, toPng } from "html-to-image";
+import { DEFAULT_MASK_AVATAR } from "../store/mask";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -150,71 +152,64 @@ export function MessageExporter() {
         index={currentStepIndex}
         onStepChange={setCurrentStepIndex}
       />
-
-      <div className={styles["message-exporter-body"]}>
-        {currentStep.value === "select" && (
-          <>
-            <List>
-              <ListItem
-                title={Locale.Export.Format.Title}
-                subTitle={Locale.Export.Format.SubTitle}
-              >
-                <select
-                  value={exportConfig.format}
-                  onChange={(e) =>
-                    updateExportConfig(
-                      (config) =>
-                        (config.format = e.currentTarget.value as ExportFormat),
-                    )
-                  }
-                >
-                  {formats.map((f) => (
-                    <option key={f} value={f}>
-                      {f}
-                    </option>
-                  ))}
-                </select>
-              </ListItem>
-              <ListItem
-                title={Locale.Export.IncludeContext.Title}
-                subTitle={Locale.Export.IncludeContext.SubTitle}
-              >
-                <input
-                  type="checkbox"
-                  checked={exportConfig.includeContext}
-                  onChange={(e) => {
-                    updateExportConfig(
-                      (config) =>
-                        (config.includeContext = e.currentTarget.checked),
-                    );
-                  }}
-                ></input>
-              </ListItem>
-            </List>
-            <MessageSelector
-              selection={selection}
-              updateSelection={updateSelection}
-              defaultSelectAll
-            />
-          </>
-        )}
-
-        {currentStep.value === "preview" && (
-          <>
-            {exportConfig.format === "text" ? (
-              <MarkdownPreviewer
-                messages={selectedMessages}
-                topic={session.topic}
-              />
-            ) : (
-              <ImagePreviewer
-                messages={selectedMessages}
-                topic={session.topic}
-              />
-            )}
-          </>
-        )}
+      <div
+        className={styles["message-exporter-body"]}
+        style={currentStep.value !== "select" ? { display: "none" } : {}}
+      >
+        <List>
+          <ListItem
+            title={Locale.Export.Format.Title}
+            subTitle={Locale.Export.Format.SubTitle}
+          >
+            <Select
+              value={exportConfig.format}
+              onChange={(e) =>
+                updateExportConfig(
+                  (config) =>
+                    (config.format = e.currentTarget.value as ExportFormat),
+                )
+              }
+            >
+              {formats.map((f) => (
+                <option key={f} value={f}>
+                  {f}
+                </option>
+              ))}
+            </Select>
+          </ListItem>
+          <ListItem
+            title={Locale.Export.IncludeContext.Title}
+            subTitle={Locale.Export.IncludeContext.SubTitle}
+          >
+            <input
+              type="checkbox"
+              checked={exportConfig.includeContext}
+              onChange={(e) => {
+                updateExportConfig(
+                  (config) => (config.includeContext = e.currentTarget.checked),
+                );
+              }}
+            ></input>
+          </ListItem>
+        </List>
+        <MessageSelector
+          selection={selection}
+          updateSelection={updateSelection}
+          defaultSelectAll
+        />
       </div>
+      {currentStep.value === "preview" && (
+        <div className={styles["message-exporter-body"]}>
+          {exportConfig.format === "text" ? (
+            <MarkdownPreviewer
+              messages={selectedMessages}
+              topic={session.topic}
+            />
+          ) : (
+            <ImagePreviewer messages={selectedMessages} topic={session.topic} />
+          )}
+        </div>
+      )}
     </>
   );
 }
@@ -251,6 +246,22 @@ export function PreviewActions(props: {
       ></IconButton>
     </div>
   );
+}
+
+function ExportAvatar(props: { avatar: string }) {
+  if (props.avatar === DEFAULT_MASK_AVATAR) {
+    return (
+      <NextImage
+        src={BotIcon.src}
+        width={30}
+        height={30}
+        alt="bot"
+        className="user-avatar"
+      />
+    );
+  }
+
+  return <Avatar avatar={props.avatar}></Avatar>;
 }
 
 export function ImagePreviewer(props: {
@@ -319,7 +330,12 @@ export function ImagePreviewer(props: {
       >
         <div className={styles["chat-info"]}>
           <div className={styles["logo"] + " no-dark"}>
-            <ChatGptIcon />
+            <NextImage
+              src={ChatGptIcon.src}
+              alt="logo"
+              width={50}
+              height={50}
+            />
           </div>
 
           <div>
@@ -328,9 +344,9 @@ export function ImagePreviewer(props: {
               github.com/Yidadaa/ChatGPT-Next-Web
             </div>
             <div className={styles["icons"]}>
-              <Avatar avatar={config.avatar}></Avatar>
+              <ExportAvatar avatar={config.avatar} />
               <span className={styles["icon-space"]}>&</span>
-              <MaskAvatar mask={session.mask} />
+              <ExportAvatar avatar={mask.avatar} />
             </div>
           </div>
           <div>
@@ -358,14 +374,12 @@ export function ImagePreviewer(props: {
               key={i}
             >
               <div className={styles["avatar"]}>
-                {m.role === "user" ? (
-                  <Avatar avatar={config.avatar}></Avatar>
-                ) : (
-                  <MaskAvatar mask={session.mask} />
-                )}
+                <ExportAvatar
+                  avatar={m.role === "user" ? config.avatar : mask.avatar}
+                />
               </div>
 
-              <div className={`${styles["body"]} `}>
+              <div className={styles["body"]}>
                 <Markdown
                   content={m.content}
                   fontSize={config.fontSize}
