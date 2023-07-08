@@ -58,7 +58,7 @@ async function getVersion(type: "date" | "tag") {
 export const useUpdateStore = create<UpdateStore>()(
   persist(
     (set, get) => ({
-      versionType: "tag",
+      versionType: "date",
       lastUpdate: 0,
       version: "unknown",
       remoteVersion: "",
