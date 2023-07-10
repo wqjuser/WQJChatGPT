@@ -333,11 +333,17 @@ export const useChatStore = create<ChatStore>()(
           },
           onError(error) {
             const isAborted = error.message.includes("aborted");
+            let message = error.message;
+            if (
+              message.includes("余额不足如果您需要一个访问码,可以前往此处购买:")
+            ) {
+              message = "余额不足,请联系开发者";
+            }
             botMessage.content =
               "\n\n" +
               prettyObject({
                 error: true,
-                message: error.message,
+                message: message,
               });
             botMessage.streaming = false;
             userMessage.isError = !isAborted;
