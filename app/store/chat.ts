@@ -325,19 +325,27 @@ export const useChatStore = create<ChatStore>()(
           },
           onFinish(message) {
             botMessage.streaming = false;
+            let msg = message;
+            if (message.includes("余额不足如果您需要一个访问码")) {
+              msg = "余额不足,请联系开发者";
+            }
             if (message) {
-              botMessage.content = message;
+              botMessage.content = msg;
               get().onNewMessage(botMessage);
             }
             ChatControllerPool.remove(session.id, botMessage.id);
           },
           onError(error) {
             const isAborted = error.message.includes("aborted");
+            let msg = error.message;
+            if (error.message.includes("余额不足如果您需要一个访问码")) {
+              msg = "余额不足,请联系开发者";
+            }
             botMessage.content =
               "\n\n" +
               prettyObject({
                 error: true,
-                message: error.message,
+                msg,
               });
             botMessage.streaming = false;
             userMessage.isError = !isAborted;
