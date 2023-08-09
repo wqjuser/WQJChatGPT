@@ -324,27 +324,19 @@ export const useChatStore = create<ChatStore>()(
           },
           onFinish(message) {
             botMessage.streaming = false;
-            let msg = message;
-            if (message.includes("余额不足如果您需要一个访问码")) {
-              msg = "余额不足,请联系开发者";
-            }
             if (message) {
-              botMessage.content = msg;
+              botMessage.content = message;
               get().onNewMessage(botMessage);
             }
             ChatControllerPool.remove(session.id, botMessage.id);
           },
           onError(error) {
             const isAborted = error.message.includes("aborted");
-            let msg = error.message;
-            if (error.message.includes("余额不足如果您需要一个访问码")) {
-              msg = "余额不足,请联系开发者";
-            }
-            botMessage.content =
+            botMessage.content +=
               "\n\n" +
               prettyObject({
                 error: true,
-                msg,
+                message: error.message,
               });
             botMessage.streaming = false;
             userMessage.isError = !isAborted;
@@ -561,7 +553,7 @@ export const useChatStore = create<ChatStore>()(
                 date: "",
               }),
             ),
-            config: { ...modelConfig, stream: true },
+            config: { ...modelConfig, stream: true, model: "gpt-3.5-turbo" },
             onUpdate(message) {
               session.memoryPrompt = message;
             },
