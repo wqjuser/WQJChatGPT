@@ -1,9 +1,9 @@
 <div align="center">
 <img src="./docs/images/icon.svg" alt="预览"/>
 
-<h1 align="center">Your ChatGPT</h1>
+<h1 align="center">NextChat</h1>
 
-一键免费部署你的私人 ChatGPT 网页应用。
+一键免费部署你的私人 ChatGPT 网页应用，支持 GPT3, GPT4 & Gemini Pro 模型。
 
 [演示 Demo](https://youraihelper.xyz/) / [反馈 Issues](https://github.com/wqjuser/WQJChatGPT/issues) 
 
@@ -11,7 +11,7 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wqjuser/WQJChatGPT)
 
-![cover](./docs/images/cover.png)
+![主界面](./docs/images/cover.png)
 
 </div>
 
@@ -103,6 +103,14 @@ Azure 密钥。
 ### `AZURE_API_VERSION` （可选）
 
 Azure Api 版本，你可以在这里找到：[Azure 文档](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#chat-completions)。
+
+### `GOOGLE_API_KEY` (optional)
+
+Google Gemini Pro 密钥.
+
+### `GOOGLE_URL` (optional)
+
+Google Gemini Pro Api Url.
 
 ### `HIDE_USER_API_KEY` （可选）
 
@@ -205,6 +213,7 @@ bash <(curl -s https://raw.githubusercontent.com/Yidadaa/ChatGPT-Next-Web/main/s
 [见项目贡献者列表](https://github.com/Yidadaa/ChatGPT-Next-Web/graphs/contributors)
 
 ### 相关项目
+
 - [one-api](https://github.com/songquanpeng/one-api): 一站式大模型额度管理平台，支持市面上所有主流大语言模型
 
 ## 开源协议
